@@ -30,3 +30,120 @@
     transform: rotate(360deg);
   }
 }
+
+.catalogContainer{
+	display: flex;
+	flex-flow: row;
+	padding: 15px;
+	justify-content: center;
+}
+
+.threadContainer{
+	margin: 10px;
+	display: inline-block;
+	text-align: center;
+	height: 137;
+	width: 250;
+}
+
+.subject{
+	font-weight:bold;
+}
+
+.name{
+	font-weight: bold;
+	color: DimGrey;
+}
+
+.threadLink{
+	font-weight:bold;
+}
+
+.opHeader{
+}
+.opBody{
+}
+
+.opImage{
+	width:250px;
+	vertical-align: text-top;
+}
+
+.boardTitle{
+	margin: 20px;
+	font-size: 50px;
+	color: #af0a0f;
+	text-align: center;
+	font-weight: bold;
+}
+
+.board{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
+
+.catalogImage, catalogImageLink{
+	display: block;
+	width: 150px;
+	margin: auto;
+}
+
+
+.replyContainer{
+}
+
+.postImage{
+	display:inline;
+	width: 125px;
+}
+
+
+.replyCard{
+	border-color: lightgrey;
+}
+
+.replyCardHeader{
+	
+}
+
+.postImage{
+	 vertical-align: text-top;
+}
+
+.catalogCard{
+	width: 202px !important;
+	height: 502px !important;
+}
+
+.catalogCardBody{
+	padding: 0px !important;
+}
+
+
+
+.createThreadButton{
+	
+}
+
+.createThreadForm{
+	display:none
+}
+
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+@media (max-width: 575.98px) {
+	.catalogCard{
+		margin: 0px !important;
+	}
+	.replyCard{
+		margin: 0px !important;
+	}
+}
