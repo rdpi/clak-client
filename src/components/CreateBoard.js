@@ -1,84 +1,48 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
 
-class QuickReply extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			name: '',
-			title: '',
-			hideForm: true
-		}
-		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleFileChange = this.handleFileChange.bind(this);
-    	this.handleSubmit = this.handleSubmit.bind(this);
-		this.showForm = this.showForm.bind(this);
-	}
+let CreateBoard = props => {
+  const { handleSubmit } = props
+  return (		
+		<div className="card">
+        <button className="btn card-header font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Create a new board
+        </button>
 
-	 handleSubmit = event => {
-		const values = this.state;
-    	axios.post(`http://localhost:5000/`, {name: values.name, title: values.title})
-      	.then(res => {
-        	console.log(res);
-        	console.log(res.data);
-      	})
-		this.setState({name: '', title: ''})
-		event.preventDefault();
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div className="card-body">
+	  	<form onSubmit={handleSubmit}>
+			<Field
+				component="input" 
+				type="text" 
+				name="name" 
+				className="form-control" 
+				placeholder="Board Code (eg a, b, tech, misc, etc.)"
+				maxLength="4"
+			/>
+			<Field
+				component="input" 
+				type="text" 
+				name="title" 
+				className="form-control" 
+				placeholder="Board Title (Anime, Technology, etc.)"
+				maxLength="20"
+			/>
+			<button 
+				type="submit" 	
+				className="btn btn-primary" 
+				value="Submit" 
+			>Submit</button>
+		</form>
+      </div>
+    </div>
+  </div>
+	)
+}
 
-	 }
+CreateBoard = reduxForm({
+  // a unique name for the form
+  form: 'createboard'
+})(CreateBoard)
 
-  handleInputChange = event => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
-	
-	//may add support for board banners
-	handleFileChange = event => {
-		this.setState({replyFile: event.target.files[0]});
-	}
-
-	showForm(){
-		this.setState({hideForm: false});
-	}
-
-	render() {
-		return (
-			<div className="my-5">
-				<button className="btn" onClick={this.showForm}>Create a board</button>
-				<form className={this.state.hideForm ? 'd-none' : ''} onSubmit={this.handleSubmit}>
-					<input 
-						type="text" 
-						name="name" 
-						className="form-control" 
-						value={this.state.value} 
-						onChange={this.handleInputChange} 
-						placeholder="Board Code (eg a, b, tech, misc, etc.)"
-						maxlength="4"
-					/>
-					<input 
-						type="text" 
-						name="Board Code (eg a, b, tech, misc, etc" 
-						className="form-control" 
-						value={this.state.value} 
-						onChange={this.handleInputChange} 
-						placeholder="Board Title (Anime, Technology, etc.)"
-						maxlength="20"
-					/>
-					<input 
-						type="submit" 	
-						className="btn btn-primary" 
-						value="Submit" 
-					/>
-				</form>
-
-			</div>
-		);
-	  }
-	}
-
-export default QuickReply; 
+export default CreateBoard; 

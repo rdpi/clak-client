@@ -4,6 +4,7 @@ export const FETCH_BOARDS_BEGIN = "FETCH_BOARDS_BEGIN";
 export const FETCH_BOARDS_SUCCESS = "FETCH_BOARDS_SUCCESS";
 export const FETCH_BOARDS_FAILURE = "FETCH_BOARDS_FAILURE";
 
+//actions to fetch list of boards
 export const fetchBoardsBegin = () => ({
   type: FETCH_BOARDS_BEGIN
 });
@@ -28,4 +29,3 @@ export function fetchBoards(){
 		.catch(error => dispatch(fetchBoardsError(error)));
 	};
 }
-
