@@ -10,13 +10,13 @@ let CreateBoard = props => {
         </button>
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div className="card-body">
+      <div className="card-body p-0 m-0">
 	  	<form onSubmit={handleSubmit}>
 			<Field
 				component="input" 
 				type="text" 
 				name="name" 
-				className="form-control" 
+				className="form-control rounded-0" 
 				placeholder="Board Code (eg a, b, tech, misc, etc.)"
 				maxLength="4"
 			/>
@@ -24,13 +24,13 @@ let CreateBoard = props => {
 				component="input" 
 				type="text" 
 				name="title" 
-				className="form-control" 
+				className="form-control rounded-0" 
 				placeholder="Board Title (Anime, Technology, etc.)"
 				maxLength="20"
 			/>
 			<button 
 				type="submit" 	
-				className="btn btn-primary" 
+				className="btn btn-primary rounded-0 m-0 h-100 w-100" 
 				value="Submit" 
 			>Submit</button>
 		</form>

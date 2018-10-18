@@ -1,7 +1,8 @@
 import {
   FETCH_REPLIES_BEGIN,
   FETCH_REPLIES_SUCCESS,
-  FETCH_REPLIES_FAILURE
+  FETCH_REPLIES_FAILURE,
+  RESET_REPLIES
 } from '../actions/replyActions';
 
 const initialState = {
@@ -47,6 +48,14 @@ export default function threadReducer(state = initialState, action) {
         replylist: [],
 		currenthread: {},
       };
+	  
+	 case RESET_REPLIES:
+		return{
+	      ...state,
+		  loading: true,
+		  replylist: [],
+		  currentthread: {}
+	 }
 
     default:
       // ALWAYS have a default case in a reducer

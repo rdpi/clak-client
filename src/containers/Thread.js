@@ -3,7 +3,7 @@ import QuickReply from '../components/QuickReply';
 import Reply from '../components/Reply'
 import OPpost from '../components/OPpost';
 import {connect} from 'react-redux';
-import {fetchReplies} from '../actions/replyActions';
+import {fetchReplies, resetReplies} from '../actions/replyActions';
 
 class Thread extends Component {
 
@@ -11,6 +11,10 @@ class Thread extends Component {
 		this.props.dispatch(fetchReplies(this.props.match.params.boardid, this.props.match.params.threadid))	
 	}
 
+	componentWillUnmount(){
+		this.props.dispatch(resetReplies())
+	}
+		
 
 	render() {
 		const { error, loading, replies, thread } = this.props;

@@ -1,7 +1,8 @@
 import {
   FETCH_THREADS_BEGIN,
   FETCH_THREADS_SUCCESS,
-  FETCH_THREADS_FAILURE
+  FETCH_THREADS_FAILURE,
+  RESET_THREADS
 } from '../actions/threadActions';
 
 const initialState = {
@@ -45,6 +46,15 @@ export default function threadReducer(state = initialState, action) {
         threadlist: [],
 		currentboard: {},
       };
+
+	case RESET_THREADS:
+		  return {
+			  ...state,
+			  loading: true,
+			  threadlist: [],
+			  currentboard: {},
+		};
+		  
 
     default:
       // ALWAYS have a default case in a reducer
