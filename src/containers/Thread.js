@@ -4,6 +4,7 @@ import Reply from '../components/Reply'
 import OPpost from '../components/OPpost';
 import {connect} from 'react-redux';
 import {fetchReplies, resetReplies} from '../actions/replyActions';
+import axios from 'axios';
 
 class Thread extends Component {
 
@@ -13,6 +14,14 @@ class Thread extends Component {
 
 	componentWillUnmount(){
 		this.props.dispatch(resetReplies())
+	}
+
+	submit = values => {
+    	axios.post(`http://localhost:5000/`+this.props.board+"/thread/"+this.props.thread, values)
+      	.then(res => {
+        	console.log(res);
+        	console.log(res.data);
+      	})
 	}
 		
 

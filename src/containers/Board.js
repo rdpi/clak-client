@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import CreateThread from '../components/CreateThread';
 import CatalogCard from '../components/CatalogCard';
 import {connect} from "react-redux"
-import {fetchThreads} from "../actions/threadActions";
+import {fetchThreads, resetThreads} from "../actions/threadActions";
 
 
 class Board extends Component {
 	componentDidMount() {
 		this.props.dispatch(fetchThreads(this.props.match.params.boardid))	
+	}
+
+	componentWillUnmount() {
+		this.props.dispatch(resetThreads())
 	}
 
 	render() {

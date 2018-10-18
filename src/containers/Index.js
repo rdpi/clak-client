@@ -11,7 +11,7 @@ class Index extends Component {
 	}
 	
 	submit = values => {
-		axios.post(`https://localhost:5000/`, {name: values.name, title: values.title})
+		axios.post(`http://localhost:5000/`, {name: values.name, title: values.title})
 		.then(res => {
 			console.log(res);
 			console.log(res.data);

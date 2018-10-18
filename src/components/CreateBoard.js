@@ -9,7 +9,7 @@ let CreateBoard = props => {
           Create a new board
         </button>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div className="card-body p-0 m-0">
 	  	<form onSubmit={handleSubmit}>
 			<Field
