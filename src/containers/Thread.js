@@ -17,7 +17,7 @@ class Thread extends Component {
 	}
 
 	submit = values => {
-    	axios.post(`http://localhost:5000/`+this.props.board+"/thread/"+this.props.thread, values)
+    	axios.post(`http://localhost:5000/`+this.props.match.params.boardid+"/thread/"+this.props.match.params.threadid, values)
       	.then(res => {
         	console.log(res);
         	console.log(res.data);

@@ -26,7 +26,7 @@ class Board extends Component {
 
 		return(
 			<div className="col p-0">
-				<h1 className="mt-4 mx-auto text-center font-weight-bold">/{board.name}/ - {board.title}</h1>
+				<h1 className="mt-4 mx-auto text-center font-weight-bold">/{board.uri}/ - {board.title}</h1>
 				<div className="row justify-content-center">
 					<CreateThread board = {board} />
 				</div>

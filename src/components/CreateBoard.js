@@ -15,10 +15,10 @@ let CreateBoard = props => {
 			<Field
 				component="input" 
 				type="text" 
-				name="name" 
+				name="uri" 
 				className="form-control rounded-0" 
-				placeholder="Board Code (eg a, b, tech, misc, etc.)"
-				maxLength="4"
+				placeholder="Board URI (eg a, b, tech, misc, etc.)"
+				maxLength="30"
 			/>
 			<Field
 				component="input" 
@@ -26,7 +26,7 @@ let CreateBoard = props => {
 				name="title" 
 				className="form-control rounded-0" 
 				placeholder="Board Title (Anime, Technology, etc.)"
-				maxLength="20"
+				maxLength="40"
 			/>
 			<button 
 				type="submit" 	

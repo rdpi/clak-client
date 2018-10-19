@@ -11,7 +11,7 @@ class Index extends Component {
 	}
 	
 	submit = values => {
-		axios.post(`http://localhost:5000/`, {name: values.name, title: values.title})
+		axios.post(`http://localhost:5000/`, {uri: values.uri, title: values.title})
 		.then(res => {
 			console.log(res);
 			console.log(res.data);
@@ -35,7 +35,7 @@ class Index extends Component {
 			<h2>Choose a board below to get started, or...</h2>
 			<CreateBoard onSubmit={this.submit}/>
 			<ul className = "nav nav-fill flex-column">
-				{boards.map(board => <li className="nav-item" key={board._id}><h4><Link className="nav-link" to={board._id}>/{board.name}/ - {board.title}</Link></h4></li>)}
+				{boards.map(board => <li className="nav-item" key={board._id}><h4><Link className="nav-link" to={board._id}>/{board.uri}/ - {board.title}</Link></h4></li>)}
 			</ul>
 			</div>
 		)
