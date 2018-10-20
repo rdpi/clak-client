@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm} from 'redux-form'
+import FileInput from './FileInput';
 
 let QuickReply = props => {
 	const { handleSubmit } = props
@@ -33,20 +34,12 @@ let QuickReply = props => {
 					</div>
 					<div className = "col-4">
 					<Field
-						component="input"
-						type="file" 
-						name="postimage"
+						component={FileInput}
+						name="file"
 						className="form-control-file" 
 					/>
 					</div>
 					<div className = "col-4">
-					<input type="checkbox"
-							name="sage"
-							className="form-check-input"
-							value="true"
-							id="qrSage"
-					/>
-					<label className="form-check-label" htmlFor="qrSage">Sage Thread</label>
 					</div>
 					</div>
 

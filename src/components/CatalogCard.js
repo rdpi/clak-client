@@ -6,9 +6,9 @@ import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 const CatalogCard = ({board, thread}) => (
 	<div className = "card mx-2 my-2 catalogCard">
-		<Link className="catalogImageLink" to={board._id+"/thread/"+thread._id}>
+		<Link className="catalogImageLink" to={board.uri+"/thread/"+thread._id}>
 			<CloudinaryContext cloudName="dmalxzhqk">
-				<Image className ="card-img-top" publicId={thread.media}>
+				<Image className ="card-img-top" publicId={thread.file_id}>
   					<Transformation height="200" width="200" crop="fill"/>
 				</Image>
 			</CloudinaryContext>

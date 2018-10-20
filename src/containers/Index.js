@@ -35,7 +35,7 @@ class Index extends Component {
 			<h2>Choose a board below to get started, or...</h2>
 			<CreateBoard onSubmit={this.submit}/>
 			<ul className = "nav nav-fill flex-column">
-				{boards.map(board => <li className="nav-item" key={board._id}><h4><Link className="nav-link" to={board._id}>/{board.uri}/ - {board.title}</Link></h4></li>)}
+				{boards.map(board => <li className="nav-item" key={board._id}><h4><Link className="nav-link" to={board.uri}>/{board.uri}/ - {board.title}</Link></h4></li>)}
 			</ul>
 			</div>
 		)

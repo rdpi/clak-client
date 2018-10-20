@@ -17,7 +17,14 @@ class Thread extends Component {
 	}
 
 	submit = values => {
-    	axios.post(`http://localhost:5000/`+this.props.match.params.boardid+"/thread/"+this.props.match.params.threadid, values)
+		const formData = new FormData();
+		if (values.name)
+			formData.append('name', values.name);
+		if (values.body)
+			formData.append('body', values.body);
+		if(values.file)
+			formData.append('file', values.file, values.file.name);
+    	axios.post(`http://localhost:5000/`+this.props.match.params.boardid+"/thread/"+this.props.match.params.threadid, formData)
       	.then(res => {
         	console.log(res);
         	console.log(res.data);
@@ -37,12 +44,12 @@ class Thread extends Component {
 		}
 
 		return(
-			<div className = "container">
+			<div className = "container-fluid w-50 threadContainer">
 				<OPpost thread={thread} />
 				{replies.map(reply =>
 				 <Reply key={reply._id} reply={reply} />
 				)}
-				<QuickReply board = {this.props.match.params.boardid} thread = {this.props.match.params.threadid}/>
+				<QuickReply onSubmit={this.submit}/>
 			</div>
 		)
 	}
