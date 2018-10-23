@@ -75,28 +75,19 @@
 	justify-content: center;
 }
 
-.catalogImage, catalogImageLink{
-	display: block;
-	width: 150px;
-	margin: auto;
+
+.catalogLink, .catalogLink:hover{
+  color: inherit;
+  text-decoration: inherit;
 }
 
-
-.replyContainer{
+.catalogCard:hover{
+  border: 1px solid rgb(187, 187, 187)!important;
 }
 
 .postImage{
 	display:inline;
 	width: 125px;
-}
-
-
-.replyCard{
-	border-color: lightgrey;
-}
-
-.replyCardHeader{
-	
 }
 
 .postImage{
@@ -112,12 +103,6 @@
 	padding: 0px !important;
 }
 
-
-
-.createThreadButton{
-	
-}
-
 .createThreadForm{
 	display:none
 }
@@ -131,21 +116,41 @@
     text-align: center;
 }
 
+.threadContainer{
+  background: white;
+}
+
 @media (max-width: 575.98px) {
-	html{
-	font-size: 1.2rem;
-	}
 	.catalogCard{
 		margin: 0px !important;
 	}
 	.replyCard{
 		margin: 0px !important;
 		width: 100% !important;
-		border-radius: 0px !important;
-	}
+    border-radius: 0px !important;
+    border-bottom: 1px solid lightgrey !important;
+  }
+  
 
 	.threadContainer{
 		padding: 0px !important;
 		width: 100% !important;
 	}
+}
+
+/ Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+  .threadContainer{
+    width: 50%;
+  }
 }
