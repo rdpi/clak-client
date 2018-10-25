@@ -1,24 +1,24 @@
 import {
   FETCH_BOARDS_BEGIN,
   FETCH_BOARDS_SUCCESS,
-  FETCH_BOARDS_FAILURE
+  FETCH_BOARDS_FAILURE,
 } from '../actions/boardActions';
 
 const initialState = {
   boardlist: [],
   loading: false,
-  error: null
+  error: null,
 };
 
 export default function boardReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case FETCH_BOARDS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
       return {
         ...state,
         loading: true,
-        error: null
+        error: null,
       };
 
     case FETCH_BOARDS_SUCCESS:
@@ -27,7 +27,7 @@ export default function boardReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        boardlist: action.payload.boards
+        boardlist: action.payload.boards,
       };
 
     case FETCH_BOARDS_FAILURE:
@@ -40,7 +40,7 @@ export default function boardReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload.error,
-        boardlist: []
+        boardlist: [],
       };
 
     default:
@@ -48,4 +48,3 @@ export default function boardReducer(state = initialState, action) {
       return state;
   }
 }
-

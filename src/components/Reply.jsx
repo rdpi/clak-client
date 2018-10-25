@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { Image, Transformation, CloudinaryContext } from 'cloudinary-react';
 import Bytes from './Bytes';
+import Quote from './Quote';
 
 class Reply extends Component {
   constructor(props) {
@@ -20,15 +21,42 @@ class Reply extends Component {
 
   render() {
     const reply = this.props.reply;
+
     return (
       <div className="card mb-2 mx-auto w-100 replyCard" id={reply._id}>
         <ReplyHeader reply={reply} />
         <FileInfo reply={reply} />
         <div className="card-body px-3 pt-0 pb-2 reply">
-          <a href={`#${reply._id}`} onClick={this.toggle} className={(reply.file_id) ? '' : 'd-none'}>
+          <a href={`#${reply._id}`} onClick={this.toggle} className={(reply.file_id) ? '' : 'd-none'} alt={`${reply._id} image`}>
             {(this.state.showFull) ? <ReplyImageFull id={reply.file_id} /> : <ReplyImage id={reply.file_id} />}
           </a>
-          {reply.body}
+          <span>
+            {reply.body.split('\n').map((line) => {
+              if (line.charAt(0) === '>' && line.charAt(1) !== '>' && line.charAt(2) !== '>') {
+                return (
+                  <span className="quote">
+                    {line.split(' ').map((word) => {
+                      if (word.charAt(0) === '>' && word.charAt(1) === '>') { return <a href={`#${word.substring(2)}`}>{`${word} `}</a>; }
+                      return `${word} `;
+                    })}
+                    <br />
+                  </span>
+                );
+              }
+              return (
+                <span>
+                  {line.split(' ').map((word) => {
+                    if (word.charAt(0) === '>' && word.charAt(1) === '>') { return <a href={`#${word.substring(2)}`}>{word}</a>; }
+                    return `${word} `;
+                  })}
+                  <br />
+
+                </span>
+              );
+            })
+          }
+
+          </span>
         </div>
       </div>
     );
@@ -61,7 +89,7 @@ const ReplyHeader = ({ reply }) => (
     <span>
       ID:
       {' '}
-      <button type="button" className="btn btn-link btn-sm p-0 m-0">{reply._id}</button>
+      <Quote replyid={reply._id} />
     </span>
   </div>
 );
@@ -72,7 +100,6 @@ const ReplyImage = ({ id }) => (
       <Transformation height="125" width="125" crop="limit" />
     </Image>
   </CloudinaryContext>
-
 );
 
 const ReplyImageFull = ({ id }) => (

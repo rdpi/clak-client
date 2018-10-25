@@ -22,12 +22,23 @@ class OPpost extends Component {
     const thread = this.props.thread;
     return (
       <div className="card my-0 border-0">
-        <FileInfo thread={thread} />
+        <FileInfo 
+          file_id={thread.file_id}
+          filename={thread.filename}
+          filesize={thread.filesize}
+          width={thread.width}
+          height={thread.height}
+        />
         <div className="card-body px-0 pt-1 border-0">
-          <a href={`#${thread._id}`} onClick={this.toggle}>
+          <a href={`#${thread._id}`} onClick={this.toggle} alt={`${thread._id} image`}>
             {(this.state.showFull) ? <OPImageFull id={thread.file_id} /> : <OPImage id={thread.file_id} />}
           </a>
-          <OPHeader thread={thread} />
+          <OPHeader
+            subject={thread.subject}
+            name={thread.name}
+            date={thread.date}
+            id={thread._id}
+          />
           {thread.body}
         </div>
       </div>
@@ -35,42 +46,42 @@ class OPpost extends Component {
   }
 }
 
-const FileInfo = ({ thread }) => (
-  <div className={(thread.file_id) ? 'text-secondary' : 'd-none'}>
+const FileInfo = ({ file_id, filename, filesize, width, height }) => (
+  <div className={(file_id) ? 'text-secondary' : 'd-none'}>
     {' '}
-    <a href={`http://res.cloudinary.com/dmalxzhqk/image/upload/${thread.file_id}`}>{thread.filename}</a>
+    <a href={`http://res.cloudinary.com/dmalxzhqk/image/upload/${file_id}`}>{filename}</a>
     {' '}
     (
-    <Bytes bytes={thread.filesize} />
+    <Bytes bytes={filesize} />
     ,
     {' '}
-    {thread.width}
+    {width}
     x
-    {thread.height}
+    {height}
     )
   </div>
 );
 
-const OPHeader = ({ thread }) => (
+const OPHeader = ({ subject, name, date, id }) => (
   <div className="d-flex flex-wrap justify-content-between">
     <span>
       <span className="subject">
-        {thread.subject}
+        {subject}
         {' '}
       </span>
       <span className="name">
-        {thread.name}
+        {name}
         {' '}
       </span>
       <span>
-        {moment(thread.date).fromNow()}
+        {moment(date).fromNow()}
         {' '}
       </span>
     </span>
     <span>
       ID:
       {' '}
-      <button type="button" className="btn btn-link btn-sm p-0">{thread._id}</button>
+      <button type="button" className="btn btn-link btn-sm p-0">{id}</button>
     </span>
   </div>
 );

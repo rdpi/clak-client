@@ -2,25 +2,26 @@ import {
   FETCH_THREADS_BEGIN,
   FETCH_THREADS_SUCCESS,
   FETCH_THREADS_FAILURE,
-  RESET_THREADS
+  RESET_THREADS,
 } from '../actions/threadActions';
 
 const initialState = {
   threadlist: [],
   currentboard: {},
   loading: false,
-  error: null
+  error: null,
+  boardlabel: '',
 };
 
 export default function threadReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case FETCH_THREADS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
       return {
         ...state,
         loading: true,
-        error: null
+        error: null,
       };
 
     case FETCH_THREADS_SUCCESS:
@@ -30,7 +31,8 @@ export default function threadReducer(state = initialState, action) {
         ...state,
         loading: false,
         threadlist: action.payload.threads,
-		currentboard: action.payload.board
+        currentboard: action.payload.board,
+        boardlabel: `/${action.payload.board.uri}/ - ${action.payload.board.title}`,
       };
 
     case FETCH_THREADS_FAILURE:
@@ -44,21 +46,20 @@ export default function threadReducer(state = initialState, action) {
         loading: false,
         error: action.payload.error,
         threadlist: [],
-		currentboard: {},
+        currentboard: {},
       };
 
-	case RESET_THREADS:
-		  return {
-			  ...state,
-			  loading: true,
-			  threadlist: [],
-			  currentboard: {},
-		};
-		  
+    case RESET_THREADS:
+      return {
+        ...state,
+        loading: true,
+        threadlist: [],
+        currentboard: {},
+      };
+
 
     default:
       // ALWAYS have a default case in a reducer
       return state;
   }
 }
-

@@ -29,7 +29,7 @@ class Board extends Component {
 
   render() {
     const {
-      error, loading, threads, board,
+      error, loading, threads, board, boardlabel,
     } = this.props;
 
     if (error) {
@@ -43,20 +43,24 @@ class Board extends Component {
     }
 
     if (loading) {
-      return <div>Loading...</div>;
+      const progress = { width: '90%' };
+
+      return (
+        <div className="progress">
+          <div className="progress-bar" role="progressbar" style={progress} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" />
+        </div>
+      );
     }
 
     return (
       <div className="col p-0">
         <h1 className="mt-4 mx-auto text-center font-weight-bold">
-/
-          {board.uri}
-/ -
-          {' '}
-          {board.title}
+          {boardlabel}
         </h1>
         <div className="row justify-content-center">
-          <CreateThread onSubmit={this.submit} />
+          <div className="my-5">
+            <CreateThread onSubmit={this.submit} />
+          </div>
         </div>
         <div className="container-fluid d-flex flex-wrap justify-content-center m-0 p-0">
           {threads.sort((a, b) => new Date(b.bump) - new Date(a.bump))
@@ -72,6 +76,7 @@ const mapStateToProps = state => ({
   board: state.threads.currentboard,
   loading: state.threads.loading,
   error: state.threads.error,
+  boardlabel: state.threads.boardlabel,
 });
 
 Board.defaultProps = {
@@ -79,6 +84,7 @@ Board.defaultProps = {
   loading: false,
   threads: null,
   board: null,
+  boardlabel: '',
 };
 
 Board.propTypes = {
@@ -89,6 +95,7 @@ Board.propTypes = {
     uri: PropTypes.string,
     title: PropTypes.string,
   }),
+  boardlabel: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(Board);

@@ -2,27 +2,27 @@ import {
   FETCH_REPLIES_BEGIN,
   FETCH_REPLIES_SUCCESS,
   FETCH_REPLIES_FAILURE,
-  RESET_REPLIES
+  RESET_REPLIES,
 } from '../actions/replyActions';
 
 const initialState = {
   replylist: [],
   currentthread: {},
   loading: false,
-  error: null
+  error: null,
 };
 
 export default function threadReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case FETCH_REPLIES_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
       return {
         ...state,
         loading: true,
-        error: null,        
-		replylist: [],
-		currenthread: {},
+        error: null,
+        replylist: [],
+        currenthread: {},
       };
 
     case FETCH_REPLIES_SUCCESS:
@@ -32,7 +32,7 @@ export default function threadReducer(state = initialState, action) {
         ...state,
         loading: false,
         replylist: action.payload.replies,
-		currentthread: action.payload.thread
+        currentthread: action.payload.thread,
       };
 
     case FETCH_REPLIES_FAILURE:
@@ -46,20 +46,19 @@ export default function threadReducer(state = initialState, action) {
         loading: false,
         error: action.payload.error,
         replylist: [],
-		currenthread: {},
+        currenthread: {},
       };
-	  
-	 case RESET_REPLIES:
-		return{
-	      ...state,
-		  loading: true,
-		  replylist: [],
-		  currentthread: {}
-	 }
+
+    case RESET_REPLIES:
+      return {
+        ...state,
+        loading: true,
+        replylist: [],
+        currentthread: {},
+      };
 
     default:
       // ALWAYS have a default case in a reducer
       return state;
   }
 }
-
