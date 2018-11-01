@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { change, focus, blur, formValueSelector } from 'redux-form';
+import { expandQR } from '../../actions/qrActions';
 
 class FileInput extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class FileInput extends Component {
     if (!value) value = '';
     dispatch(change('quickreply', 'body', `${value}>>${id}\n`));
     dispatch(focus('quickreply', 'body'));
+    dispatch(expandQR());
   }
 
   render() {
@@ -39,11 +41,12 @@ const mapStateToProps = state => ({
 
 FileInput.defaultProps = {
   value: '',
+  id: '',
 };
 
 FileInput.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   value: PropTypes.string,
 };
 

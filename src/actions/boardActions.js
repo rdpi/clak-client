@@ -3,6 +3,7 @@ import axios from 'axios';
 export const FETCH_BOARDS_BEGIN = 'FETCH_BOARDS_BEGIN';
 export const FETCH_BOARDS_SUCCESS = 'FETCH_BOARDS_SUCCESS';
 export const FETCH_BOARDS_FAILURE = 'FETCH_BOARDS_FAILURE';
+export const SEARCH_BOARDS_QUERY = 'SEARCH_BOARDS_QUERY';
 
 // actions to fetch list of boards
 export const fetchBoardsBegin = () => ({
@@ -31,3 +32,8 @@ export function fetchBoards() {
       .catch(error => dispatch(fetchBoardsError(error)));
   };
 }
+
+export const searchBoardsQuery = query => ({
+  type: SEARCH_BOARDS_QUERY,
+  payload: query,
+});

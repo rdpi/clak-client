@@ -27,8 +27,7 @@ const CatalogCard = ({ board, thread }) => (
       <div className="card-footer text-center border-top-0">
         {thread.replies}
         {' '}
-replies
-
+        {thread.replies === 1 ? 'reply' : 'replies'}
       </div>
     </div>
   </Link>

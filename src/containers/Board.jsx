@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { reset } from 'redux-form';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import CreateThread from '../components/CreateThread';
@@ -18,12 +19,15 @@ class Board extends Component {
   submit = (values) => {
     const formData = new FormData();
     if (values.name) { formData.append('name', values.name); }
+    if (values.subject) { formData.append('subject', values.subject); }
     if (values.body) { formData.append('body', values.body); }
     if (values.file) { formData.append('file', values.file, values.file.name); }
     axios.post(`http://localhost:5000/${this.props.match.params.boardid}`, formData)
       .then((res) => {
         console.log(res);
         console.log(res.data);
+        this.props.history.push(`${this.props.match.params.boardid}/thread/${res.data.thread}`);
+        this.props.dispatch(reset('createthread'));
       });
   }
 
@@ -72,7 +76,7 @@ class Board extends Component {
 }
 
 const mapStateToProps = state => ({
-  threads: state.threads.threadlist,
+  threads: state.threads.displayed,
   board: state.threads.currentboard,
   loading: state.threads.loading,
   error: state.threads.error,

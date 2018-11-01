@@ -3,10 +3,12 @@ import {
   FETCH_THREADS_SUCCESS,
   FETCH_THREADS_FAILURE,
   RESET_THREADS,
+  SEARCH_THREADS_QUERY,
 } from '../actions/threadActions';
 
 const initialState = {
   threadlist: [],
+  displayed: [],
   currentboard: {},
   loading: false,
   error: null,
@@ -31,6 +33,7 @@ export default function threadReducer(state = initialState, action) {
         ...state,
         loading: false,
         threadlist: action.payload.threads,
+        displayed: action.payload.threads,
         currentboard: action.payload.board,
         boardlabel: `/${action.payload.board.uri}/ - ${action.payload.board.title}`,
       };
@@ -46,6 +49,7 @@ export default function threadReducer(state = initialState, action) {
         loading: false,
         error: action.payload.error,
         threadlist: [],
+        displayed: [],
         currentboard: {},
       };
 
@@ -54,7 +58,22 @@ export default function threadReducer(state = initialState, action) {
         ...state,
         loading: true,
         threadlist: [],
+        displayed: [],
         currentboard: {},
+      };
+
+    case SEARCH_THREADS_QUERY:
+      return {
+        ...state,
+        displayed: state.threadlist.filter((thread) => {
+          let { subject, body } = thread;
+          if (!thread.subject) { subject = ''; }
+          if (!thread.body) { body = ''; }
+
+          return ((thread.name.toLowerCase().indexOf(action.payload.toLowerCase()) > -1)
+          || (subject.toLowerCase().indexOf(action.payload.toLowerCase()) > -1)
+          || (body.toLowerCase().indexOf(action.payload.toLowerCase()) > -1));
+        }),
       };
 
 

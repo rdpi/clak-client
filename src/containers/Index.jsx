@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -19,7 +20,7 @@ class Index extends Component {
   }
 
   render() {
-    const { error, loading, boards } = this.props;
+    const { error, loading, boards, displayed } = this.props;
 
     if (error) {
       return (
@@ -44,7 +45,7 @@ class Index extends Component {
         </div>
         <div className="container threadContainer my-4 rounded">
           <ul className="nav nav-fill flex-column">
-            {boards.map(board => (
+            {displayed.map(board => (
               <li className="nav-item" key={board._id}>
                 <h4>
                   <Link className="nav-link" to={board.uri}>
@@ -67,8 +68,21 @@ class Index extends Component {
 }
 const mapStateToProps = state => ({
   boards: state.boards.boardlist,
+  displayed: state.boards.displayed,
   loading: state.boards.loading,
   error: state.boards.error,
 });
+
+Index.defaultProps = {
+  boards: null,
+  loading: true,
+  error: null,
+};
+
+Index.propTypes = {
+  boards: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+};
 
 export default connect(mapStateToProps)(Index);

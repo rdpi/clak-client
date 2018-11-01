@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { reset } from 'redux-form';
 import axios from 'axios';
-import QuickReply from '../components/QuickReply';
+import { Link } from 'react-router-dom';
+import QuickReply from '../components/quickreply/QuickReply';
 import Reply from '../components/post/Reply';
 import OPpost from '../components/post/OPpost';
 import { fetchReplies, resetReplies } from '../actions/replyActions';
@@ -25,6 +27,8 @@ submit = (values) => {
     .then((res) => {
       console.log(res);
       console.log(res.data);
+      this.props.dispatch(fetchReplies(this.props.match.params.boardid, this.props.match.params.threadid));
+      this.props.dispatch(reset('quickreply'));
     });
 }
 
@@ -33,6 +37,8 @@ render() {
   const {
     error, loading, replies, thread,
   } = this.props;
+
+  const boardid = this.props.match.params.boardid;
 
   if (error) {
     return (
@@ -49,10 +55,15 @@ Error!
   }
 
   return (
-    <div className="container w-50 mt-3 py-3 rounded threadContainer">
-      <OPpost thread={thread} />
-      {replies.map(reply => <Reply key={reply._id} reply={reply} />)}
-      <QuickReply onSubmit={this.submit} />
+    <div className="col p-0">
+      <div className="my-3 text-center">
+        <Link to={`/${boardid}`}><button type="button" className="btn btn-primary">Return to /{boardid}/</button></Link>
+      </div>
+      <div className="container w-50 mt-3 py-3 rounded threadContainer">
+        <OPpost thread={thread} />
+        {replies.map(reply => <Reply key={reply._id} reply={reply} />)}
+        <QuickReply onSubmit={this.submit} />
+      </div>
     </div>
   );
 }

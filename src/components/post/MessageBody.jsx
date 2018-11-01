@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const MessageBody = ({ body }) => (
   <span>
-    {body.split('\n').map((line) => {
+    {body.split('\n').map((line, index1) => {
       if (line.charAt(0) === '>' && line.charAt(1) !== '>' && line.charAt(2) !== '>') {
         return (
-          <span className="quote">
-            {line.split(' ').map((word) => {
-              if (word.charAt(0) === '>' && word.charAt(1) === '>') { return <a href={`#${word.substring(2)}`}>{`${word} `}</a>; }
+          <span key={index1} className="quote">
+            {line.split(' ').map((word, index2) => {
+              if (word.charAt(0) === '>' && word.charAt(1) === '>') { return <a key={index2} href={`#${word.substring(2)}`}>{`${word} `}</a>; }
               return `${word} `;
             })}
             <br />
@@ -16,10 +16,10 @@ const MessageBody = ({ body }) => (
         );
       }
       return (
-        <span>
-          {line.split(' ').map((word) => {
+        <span key={index1}>
+          {line.split(' ').map((word, index2) => {
             if (word.charAt(0) === '>' && word.charAt(1) === '>') {
-              return <a href={`#${word.substring(2)}`}>{word}</a>;
+              return <a key={index2} href={`#${word.substring(2)}`}>{word}</a>;
             }
             return `${word} `;
           })}

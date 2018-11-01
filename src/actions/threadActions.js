@@ -4,6 +4,7 @@ export const FETCH_THREADS_BEGIN = 'FETCH_THREADS_BEGIN';
 export const FETCH_THREADS_SUCCESS = 'FETCH_THREADS_SUCCESS';
 export const FETCH_THREADS_FAILURE = 'FETCH_THREADS_FAILURE';
 export const RESET_THREADS = 'RESET_THREADS';
+export const SEARCH_THREADS_QUERY = 'SEARCH_THREADS_QUERY';
 
 export const fetchThreadsBegin = () => ({
   type: FETCH_THREADS_BEGIN,
@@ -34,4 +35,9 @@ export function fetchThreads(boardid) {
 
 export const resetThreads = () => ({
   type: RESET_THREADS,
+});
+
+export const searchThreadsQuery = query => ({
+  type: SEARCH_THREADS_QUERY,
+  payload: query,
 });
