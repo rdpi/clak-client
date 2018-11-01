@@ -3,6 +3,7 @@ import axios from 'axios';
 export const FETCH_REPLIES_BEGIN = 'FETCH_REPLIES_BEGIN';
 export const FETCH_REPLIES_SUCCESS = 'FETCH_REPLIES_SUCCESS';
 export const FETCH_REPLIES_FAILURE = 'FETCH_REPLIES_FAILURE';
+export const ADD_REPLY_LINK = 'ADD_REPLY_LINK';
 export const RESET_REPLIES = 'RESET_REPLIES';
 
 export const fetchRepliesBegin = () => ({
@@ -21,6 +22,11 @@ export const fetchRepliesError = error => ({
 
 export const resetReplies = () => ({
   type: RESET_REPLIES,
+});
+
+export const addReplyLink = (replyto, replyfrom) => ({
+  type: ADD_REPLY_LINK,
+  payload: { replyfrom, replyto },
 });
 
 export function fetchReplies(boardid, threadid) {

@@ -29,13 +29,15 @@ const CreateBoards = (props) => {
             maxLength="40"
             required
           />
+          <div className="card-footer d-flex py-2 border-top-0">
           <button
             type="submit"
-            className="btn btn-primary w-100"
+            className="btn btn-primary py-0"
             value="Submit"
           >
             Submit
           </button>
+          </div>
         </form>
       </div>
     </div>

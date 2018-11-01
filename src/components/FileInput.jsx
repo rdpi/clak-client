@@ -13,9 +13,6 @@ export default class FileInput extends Component {
 
   render() {
     const { input: { value } } = this.props;
-    const {
-      input, label, required, meta,
-    } = this.props;
 
     return (
       <input

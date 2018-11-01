@@ -128,6 +128,11 @@
   color: #789922;
 }
 
+.quickReply{
+  position: sticky;
+  bottom: 0;
+}
+
 @media (max-width: 575.98px) {
 	.catalogCard{
 		margin: 0px !important;

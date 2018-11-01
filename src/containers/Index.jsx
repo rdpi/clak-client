@@ -35,28 +35,32 @@ class Index extends Component {
       return <div>Loading...</div>;
     }
     return (
-      <div className="container">
-        <h1>Welcome to</h1>
-        <img src="/claklogolarge.png" alt="clak" />
-        <h2>Choose a board below to get started, or...</h2>
-        <CreateBoard onSubmit={this.submit} />
-        <ul className="nav nav-fill flex-column">
-          {boards.map(board => (
-            <li className="nav-item" key={board._id}>
-              <h4>
-                <Link className="nav-link" to={board.uri}>
-                  /
-                  {board.uri}
-                  / -
-                  {' '}
-                  {board.title}
-                </Link>
+      <div className="container text-center">
+        <div className="my-4">
+          <h1>Welcome to</h1>
+          <img src="/claklogolarge.png" alt="clak" />
+          <h2>Choose a board below to get started, or...</h2>
+          <CreateBoard onSubmit={this.submit} />
+        </div>
+        <div className="container threadContainer my-4 rounded">
+          <ul className="nav nav-fill flex-column">
+            {boards.map(board => (
+              <li className="nav-item" key={board._id}>
+                <h4>
+                  <Link className="nav-link" to={board.uri}>
+                    /
+                    {board.uri}
+                    / -
+                    {' '}
+                    {board.title}
+                  </Link>
 
-              </h4>
+                </h4>
 
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }

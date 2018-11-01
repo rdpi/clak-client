@@ -9,8 +9,12 @@ const getBytes = (bytes) => {
 
 const Bytes = ({ bytes }) => (<span>{ getBytes(bytes) }</span>);
 
+Bytes.defaultProps = {
+  bytes: 0,
+};
+
 Bytes.propTypes = {
-  bytes: PropTypes.number.isRequired,
+  bytes: PropTypes.number,
 };
 
 export default Bytes;

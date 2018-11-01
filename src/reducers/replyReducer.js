@@ -3,9 +3,11 @@ import {
   FETCH_REPLIES_SUCCESS,
   FETCH_REPLIES_FAILURE,
   RESET_REPLIES,
+  ADD_REPLY_LINK,
 } from '../actions/replyActions';
 
 const initialState = {
+  replylinks: {},
   replylist: [],
   currentthread: {},
   loading: false,
@@ -23,6 +25,7 @@ export default function threadReducer(state = initialState, action) {
         error: null,
         replylist: [],
         currenthread: {},
+        replylinks: {},
       };
 
     case FETCH_REPLIES_SUCCESS:
@@ -47,6 +50,27 @@ export default function threadReducer(state = initialState, action) {
         error: action.payload.error,
         replylist: [],
         currenthread: {},
+        replylinks: {},
+      };
+
+    case ADD_REPLY_LINK:
+
+      if (!state.replylinks[action.payload.replyfrom]) {
+        return {
+          ...state,
+          replylinks: {
+            ...state.replylinks,
+            [action.payload.replyfrom]: [action.payload.replyto],
+          },
+        };
+      }
+      
+      return {
+        ...state,
+        replylinks: {
+          ...state.replylinks,
+          [action.payload.replyfrom]: [...state.replylinks[action.payload.replyfrom], action.payload.replyto],
+        },
       };
 
     case RESET_REPLIES:
@@ -55,6 +79,7 @@ export default function threadReducer(state = initialState, action) {
         loading: true,
         replylist: [],
         currentthread: {},
+        replylinks: {},
       };
 
     default:
