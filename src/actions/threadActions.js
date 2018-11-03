@@ -23,7 +23,7 @@ export const fetchThreadsError = error => ({
 export function fetchThreads(boardid) {
   return (dispatch) => {
     (fetchThreadsBegin());
-    return axios.get(`http://localhost:5000/${boardid}`)
+    return axios.get(`${process.env.REACT_APP_CLAK_API}/${boardid}`)
       .then(res => res.data)
       .then((data) => {
         dispatch(fetchThreadsSuccess(data.threads, data.board));

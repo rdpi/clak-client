@@ -32,7 +32,7 @@ export const addReplyLink = (replyto, replyfrom) => ({
 export function fetchReplies(boardid, threadid) {
   return (dispatch) => {
     (fetchRepliesBegin());
-    return axios.get(`http://localhost:5000/${boardid}/thread/${threadid}`)
+    return axios.get(`${process.env.REACT_APP_CLAK_API}/${boardid}/thread/${threadid}`)
       .then(res => res.data)
       .then((data) => {
         dispatch(fetchRepliesSuccess(data.replies, data.thread));

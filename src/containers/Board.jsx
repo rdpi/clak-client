@@ -22,7 +22,7 @@ class Board extends Component {
     if (values.subject) { formData.append('subject', values.subject); }
     if (values.body) { formData.append('body', values.body); }
     if (values.file) { formData.append('file', values.file, values.file.name); }
-    axios.post(`http://localhost:5000/${this.props.match.params.boardid}`, formData)
+    axios.post(`${process.env.REACT_APP_CLAK_API}/${this.props.match.params.boardid}`, formData)
       .then((res) => {
         console.log(res);
         console.log(res.data);

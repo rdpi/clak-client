@@ -12,7 +12,7 @@ class Index extends Component {
   }
 
   submit = (values) => {
-    axios.post('http://localhost:5000/', { uri: values.uri, title: values.title })
+    axios.post(process.env.REACT_APP_CLAK_API, { uri: values.uri, title: values.title })
       .then((res) => {
         console.log(res);
         console.log(res.data);
@@ -20,7 +20,9 @@ class Index extends Component {
   }
 
   render() {
-    const { error, loading, boards, displayed } = this.props;
+    const {
+ error, loading, boards, displayed 
+} = this.props;
 
     if (error) {
       return (

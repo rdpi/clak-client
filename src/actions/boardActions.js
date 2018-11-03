@@ -23,7 +23,7 @@ export const fetchBoardsError = error => ({
 export function fetchBoards() {
   return (dispatch) => {
     (fetchBoardsBegin());
-    return axios.get('http://localhost:5000')
+    return axios.get(process.env.REACT_APP_CLAK_API)
       .then(res => res.data.boards)
       .then((boards) => {
         dispatch(fetchBoardsSuccess(boards));
