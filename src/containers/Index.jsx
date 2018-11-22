@@ -14,15 +14,14 @@ class Index extends Component {
   submit = (values) => {
     axios.post(process.env.REACT_APP_CLAK_API, { uri: values.uri, title: values.title })
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
+        this.props.history.push(`${res.data.board}`);
       });
   }
 
   render() {
     const {
- error, loading, boards, displayed 
-} = this.props;
+      error, loading, boards, displayed,
+    } = this.props;
 
     if (error) {
       return (

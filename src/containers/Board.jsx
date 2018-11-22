@@ -24,8 +24,6 @@ class Board extends Component {
     if (values.file) { formData.append('file', values.file, values.file.name); }
     axios.post(`${process.env.REACT_APP_CLAK_API}/${this.props.match.params.boardid}`, formData)
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
         this.props.history.push(`${this.props.match.params.boardid}/thread/${res.data.thread}`);
         this.props.dispatch(reset('createthread'));
       });
