@@ -4,7 +4,7 @@ import MessageBody from './MessageBody';
 import PostImage from './PostImage';
 import { ReplyHeader } from './PostHeaders';
 import FileInfo from './FileInfo';
-/* import ReplyLinks from './ReplyLinks'; */
+import ReplyLinks from './ReplyLinks';
 
 const Reply = ({ reply }) => (
   <div className="card mb-2 mx-auto w-100 replyCard" id={reply._id}>
@@ -19,8 +19,8 @@ const Reply = ({ reply }) => (
       />
       <PostImage id={reply._id} fileID={reply.file_id} height="125" width="125" />
       <MessageBody body={reply.body} />
-      {/* <ReplyLinks id={reply._id} body={reply.body} /> */}
     </div>
+    <ReplyLinks id={reply._id} body={reply.body} />
   </div>
 );
 

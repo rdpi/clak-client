@@ -41,7 +41,7 @@ render() {
   if (error) {
     return (
       <div>
-Error!
+        Error!
         {' '}
         {error.message}
       </div>
@@ -49,13 +49,17 @@ Error!
   }
 
   if (loading) {
-    return <div>Loading... </div>;
+    return <div className="loader" />;
   }
 
   return (
     <div className="col p-0">
       <div className="my-3 text-center">
-        <Link to={`/${boardid}`}><button type="button" className="btn btn-primary">Return to /{boardid}/</button></Link>
+        <Link to={`/${boardid}`}><button type="button" className="btn btn-primary">
+Return to /
+{boardid}
+/
+</button></Link>
       </div>
       <div className="container w-50 mt-3 py-3 rounded threadContainer">
         <OPpost thread={thread} />

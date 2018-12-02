@@ -34,7 +34,7 @@ class Index extends Component {
     }
 
     if (loading) {
-      return <div>Loading...</div>;
+      return <div className="loader" />;
     }
     return (
       <div className="container text-center">

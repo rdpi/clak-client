@@ -45,13 +45,7 @@ class Board extends Component {
     }
 
     if (loading) {
-      const progress = { width: '90%' };
-
-      return (
-        <div className="progress">
-          <div className="progress-bar" role="progressbar" style={progress} aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" />
-        </div>
-      );
+      return <div className="loader" />;
     }
 
     return (

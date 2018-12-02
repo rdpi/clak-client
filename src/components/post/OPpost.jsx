@@ -4,6 +4,7 @@ import FileInfo from './FileInfo';
 import PostImage from './PostImage';
 import MessageBody from './MessageBody';
 import { OPHeader } from './PostHeaders';
+import ReplyLinks from './ReplyLinks';
 
 const OPpost = ({ thread }) => (
   <div className="card my-0 border-0">
@@ -23,6 +24,7 @@ const OPpost = ({ thread }) => (
         id={thread._id}
       />
       <MessageBody body={thread.body} />
+      <ReplyLinks id={thread._id} body={thread.body} />
     </div>
   </div>
 );
