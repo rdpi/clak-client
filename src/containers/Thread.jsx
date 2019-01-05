@@ -23,7 +23,7 @@ submit = (values) => {
   if (values.subject) { formData.append('subject', values.subject); }
   if (values.body) { formData.append('body', values.body); }
   if (values.file) { formData.append('file', values.file, values.file.name); }
-  axios.post(`${process.env.REACT_APP_CLAK_API}/${this.props.match.params.boardid}/thread/${this.props.match.params.threadid}`, formData)
+  axios.post(`${process.env.REACT_APP_CLAK_API}/api/${this.props.match.params.boardid}/thread/${this.props.match.params.threadid}`, formData)
     .then((res) => {
       this.props.dispatch(fetchReplies(this.props.match.params.boardid, this.props.match.params.threadid));
       this.props.dispatch(reset('quickreply'));
