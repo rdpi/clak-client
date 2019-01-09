@@ -14,7 +14,7 @@ class Index extends Component {
   submit = (values) => {
     axios.post(`${process.env.REACT_APP_CLAK_API}/api/boards`, { uri: values.uri, title: values.title })
       .then((res) => {
-        this.props.history.push(`/api/boards/${res.data.board}`);
+        this.props.history.push(`/boards/${res.data.board}`);
       });
   }
 
