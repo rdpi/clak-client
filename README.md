@@ -2,6 +2,12 @@
 Frontend React client for clak
 
 # INSTALLATION
+```
+git clone https://github.com/rdpi/clak-client.git
+cd clak-client
+npm install
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
