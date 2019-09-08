@@ -22,9 +22,9 @@ class Board extends Component {
     if (values.subject) { formData.append('subject', values.subject); }
     if (values.body) { formData.append('body', values.body); }
     if (values.file) { formData.append('file', values.file, values.file.name); }
-    axios.post(`${process.env.REACT_APP_CLAK_API}/api/${this.props.match.params.boardid}`, formData)
+    axios.post(`${process.env.REACT_APP_CLAK_API}/${this.props.match.params.boardid}`, formData)
       .then((res) => {
-        this.props.history.push(`/${this.props.match.params.boardid}/thread/${res.data.thread}`);
+        this.props.history.push(`/${this.props.match.params.boardid}/thread/${res.data.thread.postId}`);
         this.props.dispatch(reset('createthread'));
       });
   }
@@ -60,7 +60,7 @@ class Board extends Component {
         </div>
         <div className="container-fluid d-flex flex-wrap justify-content-center m-0 p-0">
           {threads.sort((a, b) => new Date(b.bump) - new Date(a.bump))
-            .map(thread => <CatalogCard key={thread._id} board={board} thread={thread} />)}
+            .map(thread => <CatalogCard key={thread.postId} board={board} thread={thread} />)}
         </div>
       </div>
     );

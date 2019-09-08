@@ -39,7 +39,7 @@ PostImage.defaultProps = {
 };
 
 PostImage.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   fileID: PropTypes.string,
   height: PropTypes.string,
   width: PropTypes.string,

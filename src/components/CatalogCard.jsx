@@ -5,7 +5,7 @@ import { Image, Transformation, CloudinaryContext } from 'cloudinary-react';
 
 
 const CatalogCard = ({ board, thread }) => (
-  <Link className="catalogLink" to={`${board.uri}/thread/${thread._id}`}>
+  <Link className="catalogLink" to={`${board.uri}/thread/${thread.postId}`}>
     <div className="card mx-2 my-2 catalogCard">
 
       <CloudinaryContext cloudName="dmalxzhqk">
@@ -24,10 +24,21 @@ const CatalogCard = ({ board, thread }) => (
           </Truncate>
         </p>
       </div>
-      <div className="card-footer text-center border-top-0">
-        {thread.replies}
-        {' '}
-        {thread.replies === 1 ? 'reply' : 'replies'}
+      <div className="card-footer border-top-0">
+        <table align="center">
+          <tr>
+            <td style={{ textAlign: 'right' }}>{thread.replies - 1}</td>
+            <td>{thread.replies - 1 === 1 ? 'reply' : 'replies'}</td>
+          </tr>
+          <tr>
+            <td style={{ textAlign: 'right' }}>{thread.images}</td>
+            <td>{thread.images === 1 ? 'image' : 'images'}</td>
+          </tr>
+          <tr>
+            <td style={{ textAlign: 'right' }}>{thread.ips}</td>
+            <td>{thread.ips === 1 ? 'poster' : 'posters'}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </Link>

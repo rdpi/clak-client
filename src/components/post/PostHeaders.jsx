@@ -22,8 +22,7 @@ export const OPHeader = ({
       </span>
     </span>
     <span>
-      ID:
-      {' '}
+      No.
       <Quote id={id} />
     </span>
   </div>
@@ -40,7 +39,7 @@ OPHeader.propTypes = {
   subject: PropTypes.string,
   name: PropTypes.string,
   date: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export const ReplyHeader = ({ name, date, id }) => (
@@ -51,8 +50,7 @@ export const ReplyHeader = ({ name, date, id }) => (
       <span>{moment(date).fromNow()}</span>
     </span>
     <span>
-      ID:
-      {' '}
+      No.
       <Quote id={id} />
     </span>
   </div>
@@ -67,5 +65,5 @@ ReplyHeader.defaultProps = {
 ReplyHeader.propTypes = {
   name: PropTypes.string,
   date: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.number,
 };

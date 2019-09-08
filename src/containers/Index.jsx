@@ -12,9 +12,9 @@ class Index extends Component {
   }
 
   submit = (values) => {
-    axios.post(`${process.env.REACT_APP_CLAK_API}/api/boards`, { uri: values.uri, title: values.title })
+    axios.post(`${process.env.REACT_APP_CLAK_API}`, { uri: values.uri, title: values.title })
       .then((res) => {
-        this.props.history.push(`/${res.data.board}`);
+        this.props.history.push(`/${res.data.board.uri}`);
       });
   }
 
@@ -28,7 +28,7 @@ class Index extends Component {
         <div>
           Error!
           {' '}
-          {error.message}
+          {JSON.stringify(error)}
         </div>
       );
     }
@@ -47,7 +47,7 @@ class Index extends Component {
         <div className="container threadContainer my-4 rounded">
           <ul className="nav nav-fill flex-column">
             {displayed.map(board => (
-              <li className="nav-item" key={board._id}>
+              <li className="nav-item" key={board.id}>
                 <h4>
                   <Link className="nav-link" to={board.uri}>
                     /
@@ -77,13 +77,13 @@ const mapStateToProps = state => ({
 Index.defaultProps = {
   boards: null,
   loading: true,
-  error: null,
+  //error: null,
 };
 
 Index.propTypes = {
   boards: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool,
-  error: PropTypes.string,
+  //error: PropTypes.object,
 };
 
 export default connect(mapStateToProps)(Index);

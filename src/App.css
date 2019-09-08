@@ -129,7 +129,7 @@
 }
 
 .quickReply{
-  position: sticky;
+  position: fixed;
   bottom: 0;
 }
 
@@ -167,7 +167,7 @@
   100% { transform: rotate(360deg); }
 }
 
-/ Small devices (landscape phones, 576px and up)
+// Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
  }
 

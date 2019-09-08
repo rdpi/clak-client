@@ -7,9 +7,9 @@ import FileInfo from './FileInfo';
 import ReplyLinks from './ReplyLinks';
 
 const Reply = ({ reply }) => (
-  <div className="card mb-2 mx-auto w-100 replyCard" id={reply._id}>
+  <div className="card mb-2 mx-auto w-100 replyCard" id={reply.postId}>
     <div className="card-body px-3 pt-2 pb-2 reply">
-      <ReplyHeader name={reply.name} date={reply.date} id={reply._id} />
+      <ReplyHeader name={reply.name} date={reply.createdAt} id={reply.postId} />
       <FileInfo
         fileID={reply.file_id}
         filename={reply.filename}
@@ -17,10 +17,10 @@ const Reply = ({ reply }) => (
         width={reply.width}
         height={reply.height}
       />
-      <PostImage id={reply._id} fileID={reply.file_id} height="125" width="125" />
+      <PostImage id={reply.postId} fileID={reply.file_id} height="125" width="125" />
       <MessageBody body={reply.body} />
+      <ReplyLinks id={reply.postId} body={reply.body} />
     </div>
-    <ReplyLinks id={reply._id} body={reply.body} />
   </div>
 );
 
@@ -30,9 +30,9 @@ Reply.defaultProps = {
 
 Reply.propTypes = {
   reply: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
+    postId: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
     body: PropTypes.string,
     filename: PropTypes.string,
     file_id: PropTypes.string,

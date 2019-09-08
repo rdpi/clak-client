@@ -24,7 +24,7 @@ class FileInput extends Component {
     return (
       <button
         type="button"
-        className="btn btn-link btn-sm"
+        className="btn btn-link btn-sm p-0"
         onClick={this.handleClick}
       >
         {id}
@@ -46,7 +46,7 @@ FileInput.defaultProps = {
 
 FileInput.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  id: PropTypes.string,
+  id: PropTypes.number,
   value: PropTypes.string,
 };
 

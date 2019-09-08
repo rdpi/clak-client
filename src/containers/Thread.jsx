@@ -23,7 +23,7 @@ submit = (values) => {
   if (values.subject) { formData.append('subject', values.subject); }
   if (values.body) { formData.append('body', values.body); }
   if (values.file) { formData.append('file', values.file, values.file.name); }
-  axios.post(`${process.env.REACT_APP_CLAK_API}/api/${this.props.match.params.boardid}/thread/${this.props.match.params.threadid}`, formData)
+  axios.post(`${process.env.REACT_APP_CLAK_API}/${this.props.match.params.boardid}/thread/${this.props.match.params.threadid}`, formData)
     .then((res) => {
       this.props.dispatch(fetchReplies(this.props.match.params.boardid, this.props.match.params.threadid));
       this.props.dispatch(reset('quickreply'));
@@ -53,18 +53,26 @@ render() {
   }
 
   return (
-    <div className="col p-0">
-      <div className="my-3 text-center">
-        <Link to={`/${boardid}`}><button type="button" className="btn btn-primary">
-Return to /
-{boardid}
-/
-</button></Link>
-      </div>
-      <div className="container w-50 mt-3 py-3 rounded threadContainer">
-        <OPpost thread={thread} />
-        {replies.map(reply => <Reply key={reply._id} reply={reply} />)}
-        <QuickReply onSubmit={this.submit} />
+    <div className="container-fluid py-3 ">
+      <div className="row">
+        <div className="col-xl-3 col-lg-2 col-md-3 col-sm-0">
+
+          <Link to={`/${boardid}`}>
+            <button type="button" className="btn btn-primary">
+              Return to /
+              {boardid}
+              /
+            </button>
+          </Link>
+
+        </div>
+        <div className="col-lg-8 col-xl-6 col-md-9 col sm-12 px-2">
+          <div className="container-fluid py-2 rounded threadContainer">
+            <OPpost thread={thread} />
+            {replies.map(reply => <Reply key={reply.postId} reply={reply} />)}            
+          </div>
+        </div>
+        <div className="col-sm-0 col-md-0 col-lg-2 col-xl-3"><QuickReply onSubmit={this.submit} /></div>
       </div>
     </div>
   );

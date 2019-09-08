@@ -14,7 +14,7 @@ const initialState = {
   error: null,
 };
 
-export default function threadReducer(state = initialState, action) {
+export default function replyReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_REPLIES_BEGIN:
       return {
@@ -46,12 +46,12 @@ export default function threadReducer(state = initialState, action) {
 
     case ADD_REPLY_LINK:
 
-      if (!state.replylinks[action.payload.replyfrom]) {
+      if (!state.replylinks[parseInt(action.payload.replyfrom, 10)]) {
         return {
           ...state,
           replylinks: {
             ...state.replylinks,
-            [action.payload.replyfrom]: [action.payload.replyto],
+            [parseInt(action.payload.replyfrom, 10)]: [action.payload.replyto],
           },
         };
       }
@@ -60,7 +60,7 @@ export default function threadReducer(state = initialState, action) {
         ...state,
         replylinks: {
           ...state.replylinks,
-          [action.payload.replyfrom]: [...state.replylinks[action.payload.replyfrom], action.payload.replyto],
+          [parseInt(action.payload.replyfrom, 10)]: [...state.replylinks[parseInt(action.payload.replyfrom, 10)], action.payload.replyto],
         },
       };
 

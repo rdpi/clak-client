@@ -8,7 +8,7 @@ const MessageBody = ({ body }) => (
         return (
           <span key={index1} className="quote">
             {line.split(' ').map((word, index2) => {
-              if (word.charAt(0) === '>' && word.charAt(1) === '>') { return <a key={index2} href={`#${word.substring(2)}`}>{`${word} `}</a>; }
+              if (word.charAt(0) === '>' && word.charAt(1) === '>') { return <a key={index2} href={`#${word.substring(2)}`}><u>{`${word} `}</u></a>; }
               return `${word} `;
             })}
             <br />
@@ -19,7 +19,7 @@ const MessageBody = ({ body }) => (
         <span key={index1}>
           {line.split(' ').map((word, index2) => {
             if (word.charAt(0) === '>' && word.charAt(1) === '>') {
-              return <a key={index2} href={`#${word.substring(2)}`}>{word}</a>;
+              return <a key={index2} href={`#${word.substring(2).trim()}`}><u>{word}</u></a>;
             }
             return `${word} `;
           })}

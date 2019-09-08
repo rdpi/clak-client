@@ -8,23 +8,28 @@ import ReplyLinks from './ReplyLinks';
 
 const OPpost = ({ thread }) => (
   <div className="card my-0 border-0">
-    <FileInfo
-      fileID={thread.file_id}
-      filename={thread.filename}
-      filesize={thread.filesize}
-      width={thread.width}
-      height={thread.height}
-    />
-    <div className="card-body px-0 pt-1 border-0">
-      <PostImage id={thread._id} fileID={thread.file_id} height="250" width="250" />
-      <OPHeader
-        subject={thread.subject}
-        name={thread.name}
-        date={thread.date}
-        id={thread._id}
+    <div>
+      <FileInfo
+        fileID={thread.file_id}
+        filename={thread.filename}
+        filesize={thread.filesize}
+        width={thread.width}
+        height={thread.height}
       />
-      <MessageBody body={thread.body} />
-      <ReplyLinks id={thread._id} body={thread.body} />
+      <div className="card-body px-0 pt-1 border-0">
+        <PostImage id={thread.postId} fileID={thread.file_id} height="250" width="250" />
+        <OPHeader
+          subject={thread.subject}
+          name={thread.name}
+          date={thread.createdAt}
+          id={thread.postId}
+        />
+        <MessageBody body={thread.body} />
+        
+      </div>
+    </div>
+    <div className="my-3">
+      <ReplyLinks id={thread.postId} body={thread.body} />
     </div>
   </div>
 );
