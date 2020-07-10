@@ -15,7 +15,7 @@ class Index extends Component {
     axios.post(`${process.env.REACT_APP_CLAK_API}`, { uri: values.uri, title: values.title })
       .then((res) => {
         this.props.history.push(`/${res.data.board.uri}`);
-      });
+      }).catch(error => console.log(error.validationErrors));
   }
 
   render() {
@@ -77,13 +77,13 @@ const mapStateToProps = state => ({
 Index.defaultProps = {
   boards: null,
   loading: true,
-  //error: null,
+  // error: null,
 };
 
 Index.propTypes = {
   boards: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool,
-  //error: PropTypes.object,
+  // error: PropTypes.object,
 };
 
 export default connect(mapStateToProps)(Index);
