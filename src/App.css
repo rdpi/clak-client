@@ -3,7 +3,8 @@
 }
 
 .navbar{
-  background: #24292e;
+  background: #fafafa;
+  border-bottom: 1px solid lightgrey;
 }
 
 .App-logo {
