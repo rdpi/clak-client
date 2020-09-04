@@ -7,7 +7,7 @@ import { OPHeader } from './PostHeaders';
 import ReplyLinks from './ReplyLinks';
 
 const OPpost = ({ thread }) => (
-  <div className="card my-0 border-0">
+  <div className="card my-0 border-0" id={thread.postId}>
     <div>
       <FileInfo
         fileID={thread.file_id}
